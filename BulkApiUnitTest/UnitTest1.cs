@@ -15,9 +15,9 @@ namespace BulkApiUnitTest
         private string _SOQL = "select FirstName, LastName, Phone from Contact where LastName = 'Plotkin'";
 
 
-
+        //  Lower level Unit Test
         [TestMethod]
-        public void TestUpsertContacts()
+        public void TestUpsertContactsWithoutBatchRunner()
         {
             var csv = File.ReadAllText("contactsupsert.csv");
             var api = new BulkApiContext();
@@ -33,6 +33,7 @@ namespace BulkApiUnitTest
 
             File.AppendAllText("results.csv", results);
         }
+
         [TestMethod]
         public void TestBatchRunnerUpsert()
         {
@@ -40,11 +41,27 @@ namespace BulkApiUnitTest
             var b = new BatchRunner(_UserName, _Password, _SecurityToken, OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c").Task;
             File.AppendAllText("results.csv", b.Result);
         }
+
         [TestMethod]
         public void TestBatchRunnerQuery()
         {
-            var b = new BatchRunner(_UserName, _Password, _SecurityToken, OperationType.query, "Contact", BulkContentType.CSV, _SOQL, "CMS_Family_ID__c").Task;
+            var b = new BatchRunner(_UserName, _Password, _SecurityToken, OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null).Task;
             File.AppendAllText("results.csv", b.Result);
+        }
+
+        [TestMethod]
+        public void TestBatchRunnersWithSharedLogin()
+        {
+            var api = new BulkApiContext();
+            api.Login(_UserName, _Password, _SecurityToken).Wait();
+
+            var csv = File.ReadAllText("contactsupsert.csv");
+            var b1 = new BatchRunner(api, OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c").Task;
+
+            var b2 = new BatchRunner(api, OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null).Task;
+
+            File.AppendAllText("results.csv", b1.Result);
+            File.AppendAllText("results.csv", b2.Result);
         }
     }
 }
