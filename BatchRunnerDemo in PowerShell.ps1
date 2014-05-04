@@ -3,8 +3,8 @@
 ADD-TYPE -Path 'BulkApi.dll'
 
 $UserName = "jewpaltz@gmail.com.uat";
-$Password = "parents3";
-$SecurityToken = "tADbTTKuQnIH2AH9YF0CLPvy";
+$Password = "";
+$SecurityToken = "";
 
 
 $csv = Get-Content '.\contactsupsert.csv' | out-string

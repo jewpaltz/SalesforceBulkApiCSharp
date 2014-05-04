@@ -3,8 +3,8 @@
 ADD-TYPE -Path 'BulkApi.dll'
 
 $UserName = "jewpaltz@gmail.com.uat";
-$Password = "parents3";
-$SecurityToken = "tADbTTKuQnIH2AH9YF0CLPvy";
+$Password = "";
+$SecurityToken = "";
 
 
 $csv = Get-Content '.\contactsupsert.csv' | out-string
@@ -13,9 +13,5 @@ $runner1 = New-Object -TypeName BulkApi.BatchRunner -ArgumentList $UserName, $Pa
 $SOQL = "select FirstName, LastName, Phone from Contact where LastName = 'Plotkin'";
 $runner2 = New-Object -TypeName BulkApi.BatchRunner -ArgumentList $UserName, $Password, $SecurityToken, query, "Contact", CSV, $SOQL, null
 
-[System.Threading.Tasks.Task].WhenAll($runner1.Task, $runner2.Task).ContinueWith([Action[System.Threading.Tasks.Task]] {
-    param($t)
-    foreach($s in $t.Result){
-        Write-Host $s
-    }
-})
+$runner1.Task.Result
+$runner2.Task.Result
