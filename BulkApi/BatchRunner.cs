@@ -12,24 +12,35 @@ namespace BulkApi
     {
         public BatchRunner(string userName, string password, string securityToken, OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName)
         {
-            Job = new JobCreationResponse(); 
-            Batch = new BatchInfo();
-            Task = this.Run(userName, password, securityToken, operation, Object, contentType, body, externalIdFieldName);
+            Login(userName, password, securityToken);
+            Task = this.Run(operation, Object, contentType, body, externalIdFieldName);
+        }
+        public BatchRunner(BulkApiContext api, OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName)
+        {
+            _Api = api;
+            Task = this.Run(operation, Object, contentType, body, externalIdFieldName);
         }
 
-        private async Task<string> Run(string userName, string password, string securityToken, OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName=null)
+        BulkApiContext _Api;
+
+        private void Login(string userName, string password, string securityToken)
         {
-            var api = new BulkApiContext();
-            await api.Login(userName, password, securityToken);
-            Job = await api.CreateJob(new JobCreationRequest { contentType = contentType, Object = Object, operation = operation, externalIdFieldName=externalIdFieldName });
-            Batch = await api.AddBatch(body, Job.id);
+            _Api = new BulkApiContext();
+            //  If await the lagin or return the task (i.e. eith way of running the login asynchronesly) I get a null reference exception
+            _Api.Login(userName, password, securityToken).Wait();
+        }
+
+        private async Task<string> Run(OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName=null)
+        {
+            Job = await _Api.CreateJob(new JobCreationRequest { contentType = contentType, Object = Object, operation = operation, externalIdFieldName=externalIdFieldName });
+            Batch = await _Api.AddBatch(body, Job.id);
             while (Batch.state == BatchState.Queued)
             {
                 await System.Threading.Tasks.Task.Delay(5000);
-                Batch = await api.GetBatchStatus(Batch);
-                Job = await api.GetJobStatus(Job.id);
+                Batch = await _Api.GetBatchStatus(Batch);
+                Job = await _Api.GetJobStatus(Job.id);
             }
-            Results = await api.GetBatchResult(Batch.id, Batch.jobId);
+            Results = await _Api.GetBatchResult(Batch.id, Batch.jobId);
             return Results;
         }
 
@@ -41,13 +52,13 @@ namespace BulkApi
         }
         
 
-        private JobCreationResponse _Job;
+        private JobCreationResponse _Job = new JobCreationResponse();
         public JobCreationResponse Job
         {
             get { return _Job; }
             private set { _Job = value; OnPropertyChanged(); }
         }
-        private BatchInfo _Batch;
+        private BatchInfo _Batch = new BatchInfo();
         public BatchInfo Batch
         {
             get { return _Batch; }
