@@ -1,0 +1,22 @@
+"Id","Success","Created","Error"
+"003f000000PYgCEAA1","true","true",""
+"003f000000PYgCFAA1","true","true",""
+"Id","Success","Created","Error"
+"003f000000PYgCEAA1","true","false",""
+"003f000000PYgCFAA1","true","false",""
+<?xml version="1.0" encoding="UTF-8"?><error
+   xmlns="http://www.force.com/2009/06/asyncapi/dataload">
+ <exceptionCode>InvalidBatch</exceptionCode>
+ <exceptionMessage>Records not processed</exceptionMessage>
+</error>"FirstName","LastName","Phone"
+"Moshe","Plotkin","845-255-8191"
+"Irving","Plotkin","860-537-2823"
+"Id","Success","Created","Error"
+"003f000000PYgCEAA1","true","false",""
+"003f000000PYgCFAA1","true","false",""
+"Id","Success","Created","Error"
+"","false","false","DUPLICATE_VALUE:duplicate value found: CMS_Family_ID__c duplicates value on record with id: 003f000000PYgCE:--"
+"","false","false","DUPLICATE_VALUE:duplicate value found: unknown duplicates value on record with id: 003f000000PYgCF:--"
+"FirstName","LastName","Phone"
+"Moshe","Plotkin","845-255-8191"
+"Irving","Plotkin","860-537-2823"

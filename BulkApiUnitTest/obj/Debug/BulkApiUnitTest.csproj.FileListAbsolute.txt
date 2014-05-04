@@ -1,0 +1,26 @@
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.dll
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.pdb
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\BulkApi.dll
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\BulkApi.pdb
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.dll
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.pdb
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.dll.config
+C:\Users\Moshe\documents\visual studio 2013\Projects\Salesforce Api Test\BulkApiUnitTest\bin\Debug\contactsupsert.csv
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\contactsupsert.csv
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.dll.config
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\BulkApiUnitTest.pdb
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\BulkApi.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\BulkApi.pdb
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApiUnitTest\obj\Debug\BulkApiUnitTest.pdb

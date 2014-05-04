@@ -1,0 +1,20 @@
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\obj\Debug\BulkApi.csprojResolveAssemblyReference.cache
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\BulkApi.dll.config
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\BulkApi.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\BulkApi.pdb
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\obj\Debug\BulkApi.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\Salesforce Api Test\BulkApi\obj\Debug\BulkApi.pdb
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\BulkApi.dll.config
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\BulkApi.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\BulkApi.pdb
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\obj\Debug\BulkApi.csprojResolveAssemblyReference.cache
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\obj\Debug\BulkApi.dll
+C:\Users\Moshe\Documents\Visual Studio 2013\Projects\SalesforceBulkApi\BulkApi\obj\Debug\BulkApi.pdb
