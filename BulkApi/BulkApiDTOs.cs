@@ -75,6 +75,8 @@ namespace BulkApi
         public int apiActiveProcessingTime { get; set; }
         [DataMember]
         public int apexProcessingTime { get; set; }
+
+        public string XML { get; set; }
     }
 
     [DataContract(Name = "result-list", Namespace = "http://www.force.com/2009/06/asyncapi/dataload")]

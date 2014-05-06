@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Salesforce Api Test\Salesforce Api Test\Salesforce Api Test.csproj">
+      <Project>{dcd3c565-77c6-4a9c-8705-62d3eca51cf3}</Project>
+      <Name>Salesforce Api Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BulkApi\BulkApi.csproj">
       <Project>{249b03bc-3b1b-41de-9a26-ccf899c9cd92}</Project>
       <Name>BulkApi</Name>
@@ -66,6 +74,7 @@
     <None Include="contactsupsert.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -10,31 +10,30 @@ namespace BulkApi
 {
     public class BatchRunner: INotifyPropertyChanged
     {
-        public BatchRunner(string userName, string password, string securityToken, OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName)
+        public BatchRunner(string userName, string password, string securityToken)
         {
-            Login(userName, password, securityToken);
-            Task = this.Run(operation, Object, contentType, body, externalIdFieldName);
+            _LoginTask = Login(userName, password, securityToken);
         }
-        public BatchRunner(BulkApiContext api, OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName)
+        public BatchRunner(BulkApiContext api)
         {
             _Api = api;
-            Task = this.Run(operation, Object, contentType, body, externalIdFieldName);
         }
 
         BulkApiContext _Api;
 
-        private void Login(string userName, string password, string securityToken)
+        private Task Login(string userName, string password, string securityToken)
         {
             _Api = new BulkApiContext();
-            //  If await the lagin or return the task (i.e. eith way of running the login asynchronesly) I get a null reference exception
-            _Api.Login(userName, password, securityToken).Wait();
+            return _Api.Login(userName, password, securityToken);
         }
 
-        private async Task<string> Run(OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName=null)
+        public async Task<string> Run(OperationType operation, string Object, BulkContentType contentType, string body, string externalIdFieldName=null)
         {
+            if (_LoginTask != null)
+                await _LoginTask;
             Job = await _Api.CreateJob(new JobCreationRequest { contentType = contentType, Object = Object, operation = operation, externalIdFieldName=externalIdFieldName });
             Batch = await _Api.AddBatch(body, Job.id);
-            while (Batch.state == BatchState.Queued)
+            while (Batch.state == BatchState.Queued || Batch.state == BatchState.InProgress)
             {
                 await System.Threading.Tasks.Task.Delay(5000);
                 Batch = await _Api.GetBatchStatus(Batch);
@@ -44,13 +43,7 @@ namespace BulkApi
             return Results;
         }
 
-        private Task<string> _Task;
-        public Task<string> Task
-        {
-            get { return _Task; }
-            private set { _Task = value; OnPropertyChanged(); }
-        }
-        
+        private Task _LoginTask;
 
         private JobCreationResponse _Job = new JobCreationResponse();
         public JobCreationResponse Job

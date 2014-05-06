@@ -22,7 +22,7 @@ namespace BulkApiUnitTest
             var csv = File.ReadAllText("contactsupsert.csv");
             var api = new BulkApiContext();
             api.Login(_UserName, _Password, _SecurityToken).Wait();
-            var job = api.CreateJob(new JobCreationRequest { contentType = BulkContentType.CSV, Object = "Contact", operation = OperationType.query }).Result;
+            var job = api.CreateJob(new JobCreationRequest { contentType = BulkContentType.CSV, Object = "Contact", operation = OperationType.upsert, externalIdFieldName= "CMS_Family_ID__c" }).Result;
             var batch = api.AddBatch(csv, job.id).Result;
             while (batch.state == BatchState.Queued)
             {
@@ -38,14 +38,14 @@ namespace BulkApiUnitTest
         public void TestBatchRunnerUpsert()
         {
             var csv = File.ReadAllText("contactsupsert.csv");
-            var b = new BatchRunner(_UserName, _Password, _SecurityToken, OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c").Task;
+            var b = new BatchRunner(_UserName, _Password, _SecurityToken).Run(OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c");
             File.AppendAllText("results.csv", b.Result);
         }
 
         [TestMethod]
         public void TestBatchRunnerQuery()
         {
-            var b = new BatchRunner(_UserName, _Password, _SecurityToken, OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null).Task;
+            var b = new BatchRunner(_UserName, _Password, _SecurityToken).Run( OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null);
             File.AppendAllText("results.csv", b.Result);
         }
 
@@ -56,12 +56,27 @@ namespace BulkApiUnitTest
             api.Login(_UserName, _Password, _SecurityToken).Wait();
 
             var csv = File.ReadAllText("contactsupsert.csv");
-            var b1 = new BatchRunner(api, OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c").Task;
+            var b1 = new BatchRunner(api).Run(OperationType.upsert, "Contact", BulkContentType.CSV, csv, "CMS_Family_ID__c");
 
-            var b2 = new BatchRunner(api, OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null).Task;
+            var b2 = new BatchRunner(api).Run(OperationType.query, "Contact", BulkContentType.CSV, _SOQL, null);
 
             File.AppendAllText("results.csv", b1.Result);
             File.AppendAllText("results.csv", b2.Result);
         }
+
+        [TestMethod]
+        public void TestBatchRunnerVM()
+        {
+            var vm = new Salesforce_Api_Test.BulkRunnerVM();
+            vm.UserName = _UserName;
+            vm.Password = _Password;
+            vm.SecurityToken = _SecurityToken;
+            vm.OperationType = OperationType.insert;
+            vm.ObjectName = "Contact";
+            vm.InputString = File.ReadAllText("contactsupsert.csv");
+
+            vm.RunBatch().Wait();
+        }
+
     }
 }

@@ -23,13 +23,17 @@ namespace BulkApi
             );
         private SalesforceReference.LoginResult _CurrentLoginResult = null;
 
-        public async Task Login(string userName, string password, string securityToken)
+        public Task Login(string userName, string password, string securityToken)
         {
-            var response = await _Svc.loginAsync(new SalesforceReference.LoginScopeHeader(), userName, password + securityToken);
-            _CurrentLoginResult = response.result;
-            var soapUri = new Uri(_CurrentLoginResult.serverUrl);
-            _Client.BaseAddress = new Uri(soapUri, API_PATH);
-            _Client.DefaultRequestHeaders.Add("X-SFDC-Session", _CurrentLoginResult.sessionId);
+            return Task.Run(() =>
+            {
+                var response = _Svc.login(new SalesforceReference.LoginScopeHeader(), userName, password + securityToken);
+                _CurrentLoginResult = response;
+                var soapUri = new Uri(_CurrentLoginResult.serverUrl);
+                _Client.BaseAddress = new Uri(soapUri, API_PATH);
+                _Client.DefaultRequestHeaders.Add("X-SFDC-Session", _CurrentLoginResult.sessionId);
+
+            });
         }
 
         public bool IsLoggedIn { get { return _CurrentLoginResult != null; } }
@@ -46,6 +50,7 @@ namespace BulkApi
             if (!IsLoggedIn) throw new Exception("Not Logged In");
             var response = await _Client.GetAsync(string.Format("{0}/", id));
             var jobInfo = await response.Content.ReadAsAsync<JobCreationResponse>();
+            jobInfo.XML = await response.Content.ReadAsStringAsync();
             return jobInfo;
         }
 
@@ -61,6 +66,7 @@ namespace BulkApi
             if (!IsLoggedIn) throw new Exception("Not Logged In");
             var response = await _Client.GetAsync(string.Format("{0}/batch/{1}",job_id, id));
             var batchInfo = await response.Content.ReadAsAsync<BatchInfo>();
+            batchInfo.XML = await response.Content.ReadAsStringAsync();
             return batchInfo;
         }
         public Task<BatchInfo> GetBatchStatus(BatchInfo req)

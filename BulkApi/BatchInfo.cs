@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BulkApi
 {
-    /// <remarks/>
-    [DataContract(Namespace = "http://www.force.com/2009/06/asyncapi/dataload", Name="batchInfo")]
+
+    [DataContract(Name="batchInfo", Namespace = "http://www.force.com/2009/06/asyncapi/dataload")]
     public partial class BatchInfo
     {
-
+        public string XML { get; set; }
         private string idField;
 
         private string jobIdField;
@@ -22,10 +22,18 @@ namespace BulkApi
 
         private System.DateTime systemModstampField;
 
-        private byte numberRecordsProcessedField;
+        private long numberRecordsProcessedField;
+
+        private long numberRecordsFailedField;
+
+        private long totalProcessingTimeField;
+
+        private long apiActiveProcessingTimeField;
+
+        private long apexProcessingTimeField;
 
         /// <remarks/>
-        [DataMember]
+        [DataMember(Order=0)]
         public string id
         {
             get
@@ -39,7 +47,7 @@ namespace BulkApi
         }
 
         /// <remarks/>
-        [DataMember]
+        [DataMember(Order = 1)]
         public string jobId
         {
             get
@@ -53,7 +61,7 @@ namespace BulkApi
         }
 
         /// <remarks/>
-        [DataMember]
+        [DataMember(Order = 2)]
         public BatchState state
         {
             get
@@ -67,7 +75,7 @@ namespace BulkApi
         }
 
         /// <remarks/>
-        [DataMember]
+        [DataMember(Order = 3)]
         public System.DateTime createdDate
         {
             get
@@ -81,7 +89,7 @@ namespace BulkApi
         }
 
         /// <remarks/>
-        [DataMember]
+        [DataMember(Order = 4)]
         public System.DateTime systemModstamp
         {
             get
@@ -95,8 +103,8 @@ namespace BulkApi
         }
 
         /// <remarks/>
-        [DataMember]
-        public byte numberRecordsProcessed
+        [DataMember(Order = 5)]
+        public long numberRecordsProcessed
         {
             get
             {
@@ -107,7 +115,64 @@ namespace BulkApi
                 this.numberRecordsProcessedField = value;
             }
         }
+
+        /// <remarks/>
+        [DataMember(Order = 6)]
+        public long numberRecordsFailed
+        {
+            get
+            {
+                return this.numberRecordsFailedField;
+            }
+            set
+            {
+                this.numberRecordsFailedField = value;
+            }
+        }
+
+        /// <remarks/>
+        [DataMember(Order = 7)]
+        public long totalProcessingTime
+        {
+            get
+            {
+                return this.totalProcessingTimeField;
+            }
+            set
+            {
+                this.totalProcessingTimeField = value;
+            }
+        }
+
+        /// <remarks/>
+        [DataMember(Order = 8)]
+        public long apiActiveProcessingTime
+        {
+            get
+            {
+                return this.apiActiveProcessingTimeField;
+            }
+            set
+            {
+                this.apiActiveProcessingTimeField = value;
+            }
+        }
+
+        /// <remarks/>
+        [DataMember(Order = 9)]
+        public long apexProcessingTime
+        {
+            get
+            {
+                return this.apexProcessingTimeField;
+            }
+            set
+            {
+                this.apexProcessingTimeField = value;
+            }
+        }
     }
+
 
 
 }
